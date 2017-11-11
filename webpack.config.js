@@ -2,9 +2,9 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './game/ttype.js',
+  entry: './js/client/client.js',
   output: {
     path: __dirname,
-    filename: './public/ttype.js'
+    filename: './public/app.js'
   },
 };
