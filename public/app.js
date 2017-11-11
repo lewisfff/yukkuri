@@ -67,26 +67,26 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-window.currentStep = document.querySelector('#stage span:last-of-type');
-
-console.log(currentStep);
-
-function keyCharPress(char) {
-    console.log(char, currentStep.innerText, (char == currentStep.innerText && 'MATCH'));
-    if (currentStep.innerText == char) {
-        currentStep.remove();
-    }
-}
-
-window.addEventListener('keypress', e => keyCharPress(e.key));
 
 window._2Type = {
-    test: function() {
-        console.log('test');
+    init: function() {
+        console.log('init');
+    },
+
+    getCurrentStep: function() {
+        return document.querySelector('#stage span:last-of-type');
+    },
+
+    keyCharPress: function(char) {
+        if (_2Type.getCurrentStep().innerText == char) {
+            _2Type.getCurrentStep().remove();
+        }
     }
 }
 
-_2Type.test();
+window.addEventListener('keypress', e => _2Type.keyCharPress(e.key));
+
+_2Type.init();
 
 
 /***/ })
