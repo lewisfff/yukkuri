@@ -6,7 +6,10 @@
   "repository": "https://github.com/Hackbit/nko2017-yukkuri",
   "license": "UNLICENSED",
   "author": "Team Yukkuri",
-  "dependencies": {},
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-static": "^4.0.1"
+  },
   "scripts": {
     "start": "node ./js/server/server.js",
     "build:dev": "./node_modules/.bin/webpack --config webpack.config.js",
