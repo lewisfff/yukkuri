@@ -1,4 +1,7 @@
 
+const multiplayer = require('./multiplayer.js');
+const client = new multiplayer.GameClient();
+
 window._2Type = {
     init: function() {
         console.log('init');

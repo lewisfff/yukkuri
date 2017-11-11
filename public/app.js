@@ -65,8 +65,11 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+
+const multiplayer = __webpack_require__(1);
+const client = new multiplayer.GameClient();
 
 window._2Type = {
     init: function() {
@@ -87,6 +90,22 @@ window._2Type = {
 window.addEventListener('keypress', e => _2Type.keyCharPress(e.key));
 
 _2Type.init();
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+
+class GameClient {
+
+  constructor() {
+    this.socket = io();
+  }
+
+}
+
+exports.GameClient = GameClient;
 
 
 /***/ })
