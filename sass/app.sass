@@ -1,6 +1,19 @@
+$dark: #151B1D;
+$grey: #600CE8;
+$vibrant: #600CE8;
+$pink: #F43270;
+$green: #03A694;
+$subtle: #023852;
+$light: #ECE2E4;
+
 *
     outline: 1px solid rgba(255,0,85,.2)
     box-sizing: border-box
+
+html
+    background-color: $dark
+    color: $light
+    font: 20px/150% 'arial', 'tahoma', 'noto sans', 'liberation sans', 'sans-serif'
 
 html, body
     margin: 0
@@ -12,3 +25,28 @@ main
     position: fixed
     left: calc(50% - 50vmin)
     top: calc(50% - 50vmin)
+    position: relative
+
+#stage
+    width: 100%
+    height: 100%
+    text-align: center
+    font-size: 0
+    position: absolute
+    position: relative
+    #active-zone
+        background: $subtle
+        position: absolute
+        bottom: 20%
+        width: 100%
+        height: 20%
+    #stack
+        width: 100%
+        bottom: 20%
+        position: absolute
+        span
+            display: block
+            font-size: 2rem
+            line-height: 205%
+            &:last-of-type
+                font-size: 4rem
