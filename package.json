@@ -11,15 +11,15 @@
     "start": "node ./js/server/server.js",
     "build:dev": "./node_modules/.bin/webpack --config webpack.config.js",
     "build:release": "./node_modules/.bin/webpack --config webpack.release.config.js",
-    "css": "./node_modules/.bin/node-sass sass/app.sass -o public",
-    "css:watch-files": "./node_modules/.bin/node-sass sass/app.sass -wo public",
-    "css:watch": "npm run css && npm run css:watch-files"
+    "build:sass": "node-sass -r --output-style compressed sass/app.sass -o public",
+    "watch:sass": "npm run build:sass && onchange 'sass/app.sass' -- npm run build:sass"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "node-sass": "^4.6.0",
+    "onchange": "^3.2.1",
     "webpack": "^3.8.1",
     "webpack-strip": "^0.1.0"
   }
