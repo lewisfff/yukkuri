@@ -8,6 +8,6 @@ const port = process.env.PORT || 3000;
 
 const app = new koa();
 app.use(serve(root));
-app.listen(process.env.PORT || 3000);
+app.listen(port);
 
 console.log(`Serving ${root} on port ${port}`);

@@ -26,5 +26,8 @@
     "onchange": "^3.2.1",
     "webpack": "^3.8.1",
     "webpack-strip": "^0.1.0"
+  },
+  "engines": {
+    "node": "8.4.0"
   }
 }
