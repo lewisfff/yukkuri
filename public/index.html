@@ -37,10 +37,20 @@
         </div>
     </main>
     <div class="panel" id="main-menu">
-        <h1>2-type</h1>
-        <button type="button">1 Player</button>
-        <button type="button">2 Player</button>
-        <button type="button">Instructions</button>
+        <div id="menu-body">
+            <h1>2-type</h1>
+            <div class="sub-panel" id="menu1">
+                <label class="input-container" for="player_name">
+                    Enter your name
+                    <input type="text" name="player_name">
+                </label>
+                <button type="button hidden" id="next-button">Next</button>
+            </div>
+            <div class="sub-panel hidden" id="menu2">
+                <button type="button" id="start">Start game</button>
+                <button type="button" id="instructions">Instructions</button>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="app.js"></script>
 </body>

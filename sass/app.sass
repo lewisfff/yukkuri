@@ -2,12 +2,12 @@ $dark: #151B1D;
 $grey: #600CE8;
 $vibrant: #600CE8;
 $pink: #F43270;
-$green: #03A694;
+$green: #66ccaa;
 $subtle: #023852;
 $light: #ECE2E4;
 
 *
-    outline: 1px solid rgba(255,0,85,.2)
+    // outline: 1px solid rgba(255,0,85,.2)
     box-sizing: border-box
 
 html
@@ -79,3 +79,55 @@ main
             height: 4vmin
             display: block
             text-align: right
+
+.panel
+    position: fixed
+    left: 0
+    top: 0
+    background: $light
+    color: $dark
+    width: 100%
+    height: 100%
+    text-align: center
+    #menu-body
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    button, .input-container
+        display: block
+        margin: 1rem auto
+        font-size: 2rem
+        background: $green
+        color: $dark
+        padding: .5rem 2rem
+        outline: 0
+        border-radius: 0
+        border: none
+        box-shadow: none
+        transition: .2s ease
+        cursor: pointer
+        &:focus, &:active
+            outline: 0
+    .input-container
+        max-width: 50%
+        margin: .5rem auto
+        padding: 1.5rem 0
+        input
+            font-size: 1.5rem
+            display: block
+            padding: 0
+            margin: 0 auto
+            background: transparent
+            border: 0
+            border-bottom: 4px solid $vibrant
+            margin-top: .75rem
+            &:focus, &:active
+                outline: 0
+
+    h1
+        color: $vibrant
+
+.hidden
+    opacity: 0
+    transform: scale(0.5)
+    pointer-events: none
