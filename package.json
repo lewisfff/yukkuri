@@ -13,6 +13,7 @@
   "scripts": {
     "start": "node ./js/server/server.js",
     "build:dev": "./node_modules/.bin/webpack --config webpack.config.js",
+    "watch:dev": "npm run build:dev && onchange 'js/client/client.js' -- npm run build:dev",
     "build:release": "./node_modules/.bin/webpack --config webpack.release.config.js",
     "build:sass": "node-sass -r --output-style compressed sass/app.sass -o public",
     "watch:sass": "npm run build:sass && onchange 'sass/app.sass' -- npm run build:sass"

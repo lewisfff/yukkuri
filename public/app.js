@@ -80,6 +80,14 @@ function keyCharPress(char) {
 
 window.addEventListener('keypress', e => keyCharPress(e.key));
 
+window._2Type = {
+    test: function() {
+        console.log('test');
+    }
+}
+
+_2Type.test();
+
 
 /***/ })
 /******/ ]);
