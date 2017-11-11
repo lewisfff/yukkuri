@@ -1,0 +1,14 @@
+{
+  "name": "2-type",
+  "version": "1.0.0",
+  "private": true,
+  "description": "2 player typing game",
+  "repository": "https://github.com/Hackbit/nko2017-yukkuri",
+  "license": "UNLICENSED",
+  "author": "Team Yukkuri",
+  "scripts": {
+    "start": "node ttype.js"
+  },
+  "dependencies": {
+  }
+}
