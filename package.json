@@ -8,7 +8,8 @@
   "author": "Team Yukkuri",
   "dependencies": {
     "koa": "^2.4.1",
-    "koa-static": "^4.0.1"
+    "koa-static": "^4.0.1",
+    "socket.io": "^2.0.4"
   },
   "scripts": {
     "start": "node ./js/server/server.js",
