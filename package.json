@@ -8,7 +8,7 @@
   "author": "Team Yukkuri",
   "dependencies": {},
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "node ./js/server/server.js",
     "build:dev": "./node_modules/.bin/webpack --config webpack.config.js",
     "build:release": "./node_modules/.bin/webpack --config webpack.release.config.js",
     "css": "./node_modules/.bin/node-sass sass/app.sass -o public",
