@@ -10,7 +10,12 @@
 <body>
     <main>
         <div id="stage">
-            <div id="active-zone"></div>
+            <div id="active-zone" class="ui-row"></div>
+            <div id="player-zone" class="ui-row">
+                <div>Player 1</div>
+                <div id="score">9999.99</div>
+                <div id="score">24/100</div>
+            </div>
             <div id="stack">
                 <span>i</span>
                 <span>h</span>
@@ -23,16 +28,11 @@
                 <span>a</span>
             </div>
         </div>
-        <div id="hud">
-            <div id="lobby">
-                <div class="player">
-                    <span>Player 1</span>
-                    <span id="score">9999.99</span>
-                </div>
-                <div class="player">
-                    <span>Player 2</span>
-                    <span id="score">9999.99</span>
-                </div>
+        <div id="lobby">
+            <div class="player">
+                <div class="player-row" id="name">Player 2</div>
+                <div class="player-row" id="complete">60/100</div>
+                <div class="icon"></div>
             </div>
         </div>
     </main>
