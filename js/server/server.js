@@ -54,7 +54,7 @@ io.on('connection', function(socket) {
 
 	socket.on('start', function() {
 		console.log(`game starting in ${room}`);
-		io.to(room).emit('start', text);
+		socket.broadcast.to(room).emit('start', text);
 		request(sentences, function(error, response) {
 			text = response;
 		});
