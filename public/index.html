@@ -17,15 +17,12 @@
                 <div id="score">24/100</div>
             </div>
             <div id="stack">
-                <span>i</span>
-                <span>h</span>
-                <span>g</span>
-                <span>f</span>
-                <span>e</span>
-                <span>d</span>
-                <span>c</span>
-                <span>b</span>
-                <span>a</span>
+                <span>Error</span>
+                <span>Loading</span>
+                <span>Game</span>
+                <span>Strings...</span>
+                <span>Try</span>
+                <span>Reloading!</span>
             </div>
         </div>
         <div id="lobby">
@@ -33,6 +30,9 @@
                 <div class="player-row" id="name">Player 2</div>
                 <div class="player-row" id="complete">60/100</div>
                 <div class="icon"></div>
+            </div>
+            <div id="no-player">
+                <a href="#0" id="copy-invite-link">Invite Player <span>Copy Link</span></a>
             </div>
         </div>
     </main>
@@ -48,7 +48,13 @@
             </div>
             <div class="sub-panel hidden" id="menu2">
                 <button type="button" id="start">Start game</button>
-                <button type="button" id="instructions">Instructions</button>
+                <button type="button" id="show-instructions">Instructions</button>
+                <div id="instructions">
+                    <button type="button" class="close-button"
+                            id="close-instructions">&times;</button>
+                    <h1>Instructions</h1>
+                    <p>Here are the instructions</p>
+                </div>
             </div>
         </div>
     </div>
