@@ -186,6 +186,7 @@ window._2Type = {
         if (_2Type.playerCurrentStepChar == char) {
             _2Type.playerCurrentStepCharIteration++;
             _2Type.playerAccumulativeStep++;
+            client.submitAnswer(true);
             let nextChar = _2Type.gameStringsArray[0]
                                 .charAt(_2Type.playerCurrentStepCharIteration);
             if (nextChar !== "") {
@@ -215,6 +216,7 @@ window._2Type = {
                 }
             }
         } else {
+            client.submitAnswer(false);
             _2Type.activeZone.classList.add('bad');
             setTimeout(function(){
                 _2Type.activeZone.classList.remove('bad');

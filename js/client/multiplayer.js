@@ -37,7 +37,6 @@ class GameClient {
     }.bind(this));
 
     this.socket.on('answer', function(hasMistake) {
-      console.log('DDDDD');
       this._onOpponentAnswer.call(null, hasMistake)
     }.bind(this));
 
