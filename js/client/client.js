@@ -10,8 +10,16 @@ client.onClientDisconnect(function(args) {
     console.log(`disconnect event: ${args}`);
 });
 
+client.onStartGame(function(words) {
+    console.log('words:', words);
+});
+
 window.joinGame = function(token) {
     client.joinGame(token);
+}
+
+window.startGame = function(wordCount) {
+    client.startGame();
 }
 
 // multiplayer.isUserNameValid('cat') => true

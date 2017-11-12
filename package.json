@@ -9,6 +9,7 @@
   "dependencies": {
     "koa": "^2.4.1",
     "koa-static": "^4.0.1",
+    "request": "^2.83.0",
     "socket.io": "^2.0.4"
   },
   "scripts": {
