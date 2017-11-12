@@ -27,11 +27,14 @@ window._2Type = {
         _2Type.nameInput = document.querySelector('[name=player_name]');
         _2Type.menuOverlay = document.querySelector('#main-menu');
         _2Type.playerNameElem = document.querySelector('#player-name');
-        _2Type.playerAccElem = document.querySelector('#player-acc');
-        _2Type.playerCompleteElem = document.querySelector('#player-complete');
         _2Type.endScreenElem = document.querySelector('#complete-modal');
         _2Type.playerNameElems = document.querySelectorAll('.player_name');
+        _2Type.playerAccElems = document.querySelectorAll('.player_acc');
+        _2Type.playerMistakeElems = document.querySelectorAll('.player_mistakes');
+        _2Type.playerCompleteElems = document.querySelectorAll('.player_complete');
+        _2Type.playerTimeElem = document.querySelector('#player_time');
         _2Type.enemyNameElems = document.querySelectorAll('.enemy_name');
+        _2Type.enemyCompleteElems = document.querySelectorAll('.enemy_complete');
         _2Type.winnerNameElem = document.querySelector('.winner_name');
 
         // store default vars
@@ -47,12 +50,15 @@ window._2Type = {
         _2Type.playerTotalStep = null;
         // timestamp for when game timer started
         _2Type.playerStartTime = null;
+        // timestamp for when game timer finished
+        _2Type.playerEndTime = null;
         // array of strings used as the game level
         _2Type.gameStringsArray = [
             'This','is','the','default','game','string','for','2-type.',
             'Copy','the','link','to','a','friend','and','the','real',
             'game','will','start!'
         ];
+        _2Type.gameStringsLength = null;
 
         new Clipboard('#copy-invite-link');
 
@@ -70,6 +76,7 @@ window._2Type = {
         // todo: clean up this function does way too much
         if (_2Type.playerCurrentStepChar == char) {
             _2Type.playerCurrentStepCharIteration++;
+            _2Type.playerAccumulativeStep++;
             let nextChar = _2Type.gameStringsArray[0]
                                 .charAt(_2Type.playerCurrentStepCharIteration);
             if (nextChar !== "") {
@@ -104,6 +111,7 @@ window._2Type = {
                 _2Type.activeZone.classList.remove('bad');
             }, 60);
         }
+        _2Type.updatePlayerStats();
     },
 
     nameEntry: function() {
@@ -130,27 +138,46 @@ window._2Type = {
 
         // else
         // pass the gamestringarray in, reverse it, put it onto the stage
+        _2Type.gameStringsLength = _2Type.gameStringsArray.reduce((total,element) => total + element.length, 0);
         for (var i = _2Type.gameStringsArray.length - 1; i >= 0; i--) {
             let span = document.createElement('span');
             let text = document.createTextNode(_2Type.gameStringsArray[i]);
             span.appendChild(text);
             _2Type.stack.appendChild(span);
         }
-
         for (var i = 0; i < _2Type.playerNameElems.length; i++) {
             _2Type.playerNameElems[i].innerHTML = _2Type.playerName;
         }
-
         for (var i = 0; i < _2Type.enemyNameElems.length; i++) {
             _2Type.enemyNameElems[i].innerHTML = _2Type.enemyName;
         }
-
         _2Type.playerCurrentStepChar = _2Type.gameStringsArray[0].charAt(0);
-        _2Type.playerNameElem.innerHTML = _2Type.playerName;
     },
 
     endGame: function() {
+        _2Type.playerEndTime = Date.now();
+        let finalTime = (_2Type.playerEndTime - _2Type.playerStartTime) / 1000;
+        _2Type.playerTimeElem.innerHTML = finalTime+'s';
         _2Type.endScreenElem.classList.remove('hidden');
+    },
+
+    updatePlayerStats: function() {
+        _2Type.playerTotalStep++;
+        let mistakes = _2Type.playerTotalStep -_2Type.playerAccumulativeStep;
+        let acc = _2Type.playerAccumulativeStep / _2Type.playerTotalStep;
+        for (var i = 0; i < _2Type.playerAccElems.length; i++) {
+            _2Type.playerAccElems[i].innerHTML = acc.toFixed(2);
+        }
+        for (var i = 0; i < _2Type.playerCompleteElems.length; i++) {
+            _2Type.playerCompleteElems[i].innerHTML =
+                _2Type.playerAccumulativeStep+'/'+_2Type.gameStringsLength;
+        }
+        for (var i = 0; i < _2Type.playerMistakeElems.length; i++) {
+            _2Type.playerMistakeElems[i].innerHTML = mistakes;
+        }
+        if (_2Type.playerStartTime === null) {
+            _2Type.playerStartTime = Date.now();
+        }
     }
 }
 

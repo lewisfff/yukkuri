@@ -12,9 +12,9 @@
         <div id="stage">
             <div id="active-zone" class="ui-row"></div>
             <div id="player-zone" class="ui-row">
-                <div id="player-name">Player 1</div>
-                <div id="player-acc">9999.99</div>
-                <div id="player-complete">24/100</div>
+                <div class="player_name">Player</div>
+                <div class="player_acc">9999.99</div>
+                <div id="player_complete">24/100</div>
             </div>
             <div id="stack">
                 <span>Error</span>
@@ -27,8 +27,8 @@
         </div>
         <div id="lobby">
             <div class="player">
-                <div class="player-row" id="enemy-name">Player 2</div>
-                <div class="player-row" id="enemy-complete">60/100</div>
+                <div class="player-row enemy_name">Player 2</div>
+                <div class="player-row enemy_complete">60/100</div>
                 <div class="icon"></div>
             </div>
             <div id="no-player">
@@ -44,24 +44,24 @@
                 <h2 class="player-name"><div class="player_name">[PLAYER]</div></h2>
                 <div class="sub-panel">
                     <label>Time:</label>
-                    <span class="complete-time">0.00 seconds</span>
+                    <span id="player_time">0.00 seconds</span>
                 </div>
                 <div class="sub-panel">
                     <label>Mistakes:</label>
-                    <span class="complete-time">0</span>
+                    <span class="player_mistakes">0</span>
                 </div>
-                <div class="sub-panel">
+<!--                 <div class="sub-panel">
                     <label>Best Combo:</label>
                     <span class="complete-time">0</span>
-                </div>
+                </div> -->
                 <div class="sub-panel">
                     <label>Accuracy:</label>
-                    <span class="complete-time">0%</span>
+                    <span class="player_acc">0%</span>
                 </div>
-                <div class="sub-panel rank">
+<!--                 <div class="sub-panel rank">
                     <label>Rank:</label>
                     <span class="complete-time">F</span>
-                </div>
+                </div> -->
             </div>
             <div class="stats-box" id="complete-enemy-stats">
                 <h2 class="enemy-name"><div class="enemy_name">[PLAYER]</div></h2>
@@ -73,18 +73,18 @@
                     <label>Mistakes:</label>
                     <span class="complete-time">0</span>
                 </div>
-                <div class="sub-panel">
+<!--                 <div class="sub-panel">
                     <label>Best Combo:</label>
                     <span class="complete-time">0</span>
-                </div>
+                </div> -->
                 <div class="sub-panel">
                     <label>Accuracy:</label>
                     <span class="complete-time">0%</span>
                 </div>
-                <div class="sub-panel rank">
+<!--                 <div class="sub-panel rank">
                     <label>Rank:</label>
                     <span class="complete-time">F</span>
-                </div>
+                </div> -->
             </div>
             <div id="complete-winner">
                 <div class="winner_name">[PLAYER]</div> WINS!
