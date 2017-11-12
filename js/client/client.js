@@ -197,11 +197,6 @@ window._2Type = {
 
     startGame: function() {
         _2Type.stack.innerHTML = '';
-        // TODO LILAH: pass networked string in when starting 2P mode
-        // getNetworkedString();
-
-        // else
-        // pass the gamestringarray in, reverse it, put it onto the stage
         _2Type.gameStringsLength = _2Type.gameStringsArray.reduce((total,element) => total + element.length, 0);
         for (var i = _2Type.gameStringsArray.length - 1; i >= 0; i--) {
             let span = document.createElement('span');
