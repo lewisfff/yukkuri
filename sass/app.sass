@@ -170,21 +170,20 @@ main
     margin-top: -20vmin
     h1
         color: $pink
-
-.close-button
-    color: $light
-    background: $pink
-    border: none
-    width: 6vmin
-    height: 6vmin
-    text-align: center
-    position: absolute
-    border-radius: 0
-    top: 0
-    right: 0
-    margin: 0
-    line-height: 5vmin
-    padding-top: 0
+    .close-button
+        color: $light
+        background: $pink
+        border: none
+        width: 6vmin
+        height: 6vmin
+        text-align: center
+        position: absolute
+        border-radius: 0
+        top: 0
+        right: 0
+        margin: 0
+        line-height: 5vmin
+        padding-top: 0
 
 #no-player
     top: 0
@@ -236,3 +235,20 @@ main
         border: none
         border-radius: 0
         cursor: pointer
+
+#new-player
+    background: $pink
+    color: $light
+    font-size: 1.5rem
+    position: absolute
+    width: 75vmin
+    height: 15vmin
+    top: 50%
+    left: 50%
+    margin-left: -37.5vmin
+    margin-top: -7.5vmin
+    padding: 1rem 2rem
+    line-height: 2rem
+    transition: .4s ease-out
+    &:not(.hidden)
+        transition: 0s linear

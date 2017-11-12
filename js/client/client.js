@@ -29,9 +29,14 @@ window._2Type = {
         _2Type.playerNameElem = document.querySelector('#player-name');
         _2Type.playerAccElem = document.querySelector('#player-acc');
         _2Type.playerCompleteElem = document.querySelector('#player-complete');
+        _2Type.endScreenElem = document.querySelector('#complete-modal');
+        _2Type.playerNameElems = document.querySelectorAll('.player_name');
+        _2Type.enemyNameElems = document.querySelectorAll('.enemy_name');
+        _2Type.winnerNameElem = document.querySelector('.winner_name');
 
         // store default vars
         _2Type.playerName = "Player";
+        _2Type.enemyName = "Enemy";
         // number of note steps achieved
         _2Type.playerAccumulativeStep = null;
         // current desired character for current step
@@ -89,7 +94,8 @@ window._2Type = {
                 if (_2Type.gameStringsArray.length) {
                     _2Type.playerCurrentStepChar = _2Type.gameStringsArray[0].charAt(0);
                 } else {
-                    alert('You beat the game?');
+                    // game has most likely finished
+                    _2Type.endGame();
                 }
             }
         } else {
@@ -112,7 +118,8 @@ window._2Type = {
 
     // show game window
     initGame: function() {
-        document.querySelector('#main-menu').classList.add('hidden');
+        _2Type.menuOverlay.classList.add('hidden');
+        _2Type.endScreenElem.classList.add('hidden');
         _2Type.startGame();
     },
 
@@ -130,8 +137,20 @@ window._2Type = {
             _2Type.stack.appendChild(span);
         }
 
+        for (var i = 0; i < _2Type.playerNameElems.length; i++) {
+            _2Type.playerNameElems[i].innerHTML = _2Type.playerName;
+        }
+
+        for (var i = 0; i < _2Type.enemyNameElems.length; i++) {
+            _2Type.enemyNameElems[i].innerHTML = _2Type.enemyName;
+        }
+
         _2Type.playerCurrentStepChar = _2Type.gameStringsArray[0].charAt(0);
         _2Type.playerNameElem.innerHTML = _2Type.playerName;
+    },
+
+    endGame: function() {
+        _2Type.endScreenElem.classList.remove('hidden');
     }
 }
 
