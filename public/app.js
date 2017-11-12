@@ -236,6 +236,14 @@ window._2Type = {
         let finalTime = (_2Type.playerEndTime - _2Type.playerStartTime) / 1000;
         _2Type.playerTimeElem.innerHTML = finalTime+'s';
         _2Type.endScreenElem.classList.remove('hidden');
+
+
+        console.log(
+            finalTime+'s',
+            _2Type.playerAccElems[0].innerHTML,
+            _2Type.playerMistakeElems[0].innerHTML
+        );
+
     },
 
     updatePlayerStats: function() {
@@ -290,7 +298,6 @@ class GameClient {
     }.bind(this));
 
     this.socket.on('start', function(words) {
-      console.log('things happen');
       this._onStartGame.call(null, words);
     }.bind(this));
   }
