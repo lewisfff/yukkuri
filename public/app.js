@@ -82,6 +82,8 @@ client.onClientDisconnect(function(args) {
 
 client.onStartGame(function(words) {
     console.log('words:', words);
+    _2Type.gameStringsArray = words.split(' ');
+    _2Type.startGame();
 });
 
 client.onGetOpponent(function(name) {
@@ -99,6 +101,7 @@ window.joinGame = function(token) {
 }
 
 window.startGame = function(wordCount) {
+    console.log('trying to start game');
     client.startGame();
 }
 
@@ -300,6 +303,13 @@ window._2Type = {
         for (var i = 0; i < _2Type.enemyNameElems.length; i++) {
             _2Type.enemyNameElems[i].innerHTML = _2Type.enemyName;
         }
+        window.startGame(_2Type.getRandomInt(4, 10));
+    },
+
+    getRandomInt: function(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 }
 
@@ -393,9 +403,6 @@ class GameClient {
   startGame() {
     this.socket.emit('start');
   }
-
-
-
 }
 
 const isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));

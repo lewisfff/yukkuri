@@ -79,9 +79,6 @@ class GameClient {
   startGame() {
     this.socket.emit('start');
   }
-
-
-
 }
 
 const isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));
