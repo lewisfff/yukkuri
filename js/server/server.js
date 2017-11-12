@@ -28,10 +28,8 @@ io.on('connection', function(socket) {
 	let completions = 0;
 	socket.join(room);
 	socket.emit('token', room);
-	console.log(`${name} connected to ${room}`);
 
 	socket.on('disconnect', function() {
-		console.log(`${name} disconnected from ${room}`);
 	});
 
 	socket.on('join', function(token) {
@@ -45,7 +43,6 @@ io.on('connection', function(socket) {
 		socket.join(room);
 		socket.emit('token', room);
 		socket.broadcast.to(room).emit('opponentping', name);
-		console.log(`${name} joined room: ${room}`);
 	});
 
 	socket.on('opponentpong', function(name) {
@@ -53,7 +50,6 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('start', function() {
-		console.log(`game starting in ${room}`);
 		socket.broadcast.to(room).emit('start', text);
 		request(sentences, function(error, response) {
 			text = response;
@@ -61,9 +57,7 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('answer', function(hasMistake) {
-		console.log('answer', room);
 		hasMistake = hasMistake == true
-		console.log(`socketid: ${socket.id}`);
 		socket.broadcast.to(room).emit('answer', hasMistake);
 	});
 
@@ -97,5 +91,4 @@ io.on('connection', function(socket) {
 request(sentences, function(error, response) {
 	if (!error) initialGameText = response.body;
 	server.listen(port);
-	console.log(`Serving ${root} on port ${port}`);
 });

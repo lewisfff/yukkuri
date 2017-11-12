@@ -4,32 +4,26 @@ const client = new multiplayer.GameClient();
 
 client.onGetToken(function(token) {
     window.gameToken = token;
-    console.log(`received token ${token}`);
 });
 
 client.onClientDisconnect(function(args) {
-    console.log(`disconnect event: ${args}`);
 });
 
 client.onStartGame(function(words) {
-    console.log('words:', words);
     _2Type.gameStringsArray = words.split(' ');
     _2Type.startGame();
 });
 
 client.onGetOpponent(function(name) {
-    console.log('opponent:', name);
     _2Type.enemyName = name;
     _2Type.getOpponent();
 });
 
 client.onOpponentAnswer(function(hasMistake) {
-    console.log('opponent answered: ', hasMistake);
     _2Type.showOpponentAnswer(hasMistake);
 });
 
 client.onOpponentFinish(function(stats) {
-    console.log('opponent finished: ' + stats);
     _2Type.displayEnemyStats(stats);
 });
 
@@ -42,7 +36,6 @@ window.joinGame = function(token) {
 }
 
 window.startGame = function(wordCount) {
-    console.log('trying to start game');
     client.startGame();
 }
 
