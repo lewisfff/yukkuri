@@ -32,7 +32,10 @@
                 <div class="icon"></div>
             </div>
             <div id="no-player">
-                <a href="#0" id="copy-invite-link">Invite Player <span>Copy Link</span></a>
+                <a href="#0" id="copy-invite-link"
+                 data-clipboard-text="LINKGOHERE">
+                    Invite Player <span>Click to copy link</span>
+                </a>
             </div>
         </div>
     </main>
@@ -59,6 +62,7 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

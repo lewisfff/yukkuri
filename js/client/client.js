@@ -36,6 +36,8 @@ window._2Type = {
             'game','will','start!'
         ];
 
+        new Clipboard('#copy-invite-link');
+
         // run startup functions
         _2Type.nameEntry();
         _2Type.nextButton.addEventListener('click', e => _2Type.mainMenu());
