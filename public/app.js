@@ -113,8 +113,6 @@ window.startGame = function(wordCount) {
     client.startGame();
 }
 
-<<<<<<< HEAD
-=======
 window.answer = function(hasMistake) {
     client.submitAnswer(hasMistake);
 }
@@ -123,10 +121,6 @@ window.finish = function(stats) {
     client.submitCompletion(stats);
 }
 
-// multiplayer.isUserNameValid('cat') => true
-// let token = multiplayer.FindToken(); if (token !== null) ...
-
->>>>>>> add remaining socket event logic
 window._2Type = {
     init: function() {
         // define html elements
@@ -446,8 +440,6 @@ class GameClient {
   startGame() {
     this.socket.emit('start');
   }
-<<<<<<< HEAD
-=======
 
   submitAnswer(hasMistake) {
     this.socket.emit('answer', hasMistake);
@@ -457,7 +449,6 @@ class GameClient {
     this.socket.emit('finish', stats);
   }
 
->>>>>>> add remaining socket event logic
 }
 
 const isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));

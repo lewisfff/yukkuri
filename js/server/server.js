@@ -17,7 +17,7 @@ app.use(serve(root));
 
 const server = http.createServer(app.callback());
 
-const io = socket(server);
+const io = sockio(server);
 
 let initialGameText = null;
 
