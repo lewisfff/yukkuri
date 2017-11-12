@@ -13,6 +13,9 @@ window._2Type = {
         _2Type.stack = document.querySelector('#stack');
         _2Type.nameInput = document.querySelector('[name=player_name]');
         _2Type.menuOverlay = document.querySelector('#main-menu');
+        _2Type.playerNameElem = document.querySelector('#player-name');
+        _2Type.playerAccElem = document.querySelector('#player-acc');
+        _2Type.playerCompleteElem = document.querySelector('#player-complete');
 
         // store default vars
         _2Type.playerName = "Player";
@@ -113,6 +116,7 @@ window._2Type = {
         }
 
         _2Type.playerCurrentStepChar = _2Type.gameStringsArray[0].charAt(0);
+        _2Type.playerNameElem.innerHTML = _2Type.playerName;
     }
 }
 
