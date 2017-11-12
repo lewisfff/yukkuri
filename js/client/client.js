@@ -14,6 +14,14 @@ client.onStartGame(function(words) {
     console.log('words:', words);
 });
 
+client.onGetOpponent(function(name) {
+    console.log('opponent:', name);
+});
+
+window.setName = function(name) {
+    client.setUserName(name);
+}
+
 window.joinGame = function(token) {
     client.joinGame(token);
 }

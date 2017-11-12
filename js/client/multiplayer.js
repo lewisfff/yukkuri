@@ -7,9 +7,11 @@ class GameClient {
     this._onGetTokenCallback = () => {};
     this._onClientDisconnectCallback = () => {};
     this._onStartGame = () => {};
+    this._onGetOpponent = () => {};
 
     this.token = null;
-    this.name = 'anonymous'; 
+    this.name = 'anonymous';
+    this.opponent = 'anonymous';
     this.socket = io();
 
     this.socket.on('token', function(token) {
@@ -23,6 +25,25 @@ class GameClient {
     this.socket.on('start', function(words) {
       this._onStartGame.call(null, words);
     }.bind(this));
+
+    this.socket.on('opponentping', function(name) {
+      this._onOpponentPing(name);
+    }.bind(this));
+
+    this.socket.on('opponentpong', function(name) {
+      this._onOpponentPong(name);
+    }.bind(this))
+  }
+
+  _onOpponentPing(name) {
+    this.opponent = name;
+    this.socket.emit('opponentpong', this.name);
+    this._onGetOpponent.call(null, name);
+  }
+
+  _onOpponentPong(name) {
+    this.opponent = name;
+    this._onGetOpponent.call(null, name);
   }
 
   onStartGame(callback) {
@@ -35,9 +56,19 @@ class GameClient {
       this._onGetTokenCallback = callback;
   }
 
+  onGetOpponent(callback) {
+    if (typeof callback == 'function')
+      this._onGetOpponent = callback;
+  }
+
   onClientDisconnect(callback) {
     if (typeof callback === 'function')
       this._onClientDisconnectCallback = callback;
+  }
+
+  setUserName(name) {
+    this.name = name;
+    this.socket.emit('setname', name);
   }
 
   joinGame(token) {
@@ -48,6 +79,8 @@ class GameClient {
   startGame() {
     this.socket.emit('start');
   }
+
+
 
 }
 
