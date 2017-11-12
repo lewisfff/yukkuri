@@ -7,7 +7,7 @@ const request = require('request');
 
 const token = require('./token.js');
 
-const sentences = 'http://metaphorpsum.com/sentences/1'
+const sentences = 'http://metaphorpsum.com/sentences/10'
 const pub = '../../public';
 const root = `${__dirname}/${pub}`;
 const port = process.env.PORT || 3000;

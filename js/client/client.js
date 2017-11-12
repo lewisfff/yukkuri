@@ -269,6 +269,8 @@ window._2Type = {
     },
 
     showOpponentAnswer: function(status) {
+        // technically this game has a built in chat room
+        // (using morse code)
         if (status) {
             _2Type.enemyBox.classList.add('pgood');
             setTimeout(function(){
