@@ -86,7 +86,9 @@ window._2Type = {
         _2Type.playerName = "Player";
         _2Type.enemyName = "Enemy";
         // number of note steps achieved
-        _2Type.playerAccumulativeStep = null;
+        _2Type.playerAccumulativeStep = 0;
+        // enemy number of steps achieved
+        _2Type.enemyAccumulativeStep = 0;
         // current desired character for current step
         _2Type.playerCurrentStepChar = null;
         // charAt for the current desired step char
@@ -272,6 +274,7 @@ window._2Type = {
         // technically this game has a built in chat room
         // (using morse code)
         if (status) {
+            _2Type.enemyAccumulativeStep++;
             _2Type.enemyBox.classList.add('pgood');
             setTimeout(function(){
                 _2Type.enemyBox.classList.remove('pgood');
@@ -281,6 +284,12 @@ window._2Type = {
             setTimeout(function(){
                 _2Type.enemyBox.classList.remove('bad');
             }, 20);
+        }
+
+        // we have to also show their completed count
+        for (var i = 0; i < _2Type.enemyCompleteElems.length; i++) {
+            _2Type.enemyCompleteElems[i].innerHTML =
+                _2Type.enemyAccumulativeStep+'/'+_2Type.gameStringsLength;
         }
     }
 }
