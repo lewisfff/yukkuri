@@ -25,6 +25,7 @@ client.onGetOpponent(function(name) {
 
 client.onOpponentAnswer(function(hasMistake) {
     console.log('opponent answered: ', hasMistake);
+    _2Type.showOpponentAnswer(hasMistake);
 });
 
 client.onOpponentFinish(function(stats) {
@@ -76,6 +77,7 @@ window._2Type = {
         _2Type.enemyTime = document.querySelector('#enemy_time');
         _2Type.enemyStats = document.querySelector('#enemy-stats');
         _2Type.enemyStatsPending = document.querySelector('#enemy-stats-pending');
+        _2Type.enemyBox = document.querySelector('#enemy-box');
         _2Type.winnerNameElem = document.querySelector('.winner_name');
         _2Type.noPlayerElem = document.querySelector('#no-player');
         _2Type.copyInviteLink = document.querySelector('#copy-invite-link');
@@ -191,7 +193,6 @@ window._2Type = {
             }
         }
 
-        //TODO: how to find out when enemy connects?
         _2Type.startGame();
     },
 
@@ -228,7 +229,7 @@ window._2Type = {
 
     updatePlayerStats: function() {
         _2Type.playerTotalStep++;
-        let mistakes = _2Type.playerTotalStep -_2Type.playerAccumulativeStep;
+        let mistakes = _2Type.playerTotalStep - _2Type.playerAccumulativeStep;
         let acc = _2Type.playerAccumulativeStep / _2Type.playerTotalStep;
         for (var i = 0; i < _2Type.playerAccElems.length; i++) {
             _2Type.playerAccElems[i].innerHTML = acc.toFixed(2);
@@ -247,7 +248,6 @@ window._2Type = {
 
     getOpponent: function() {
         _2Type.noPlayerElem.classList.add('hidden');
-        _2Type.enemyNameElems
         for (var i = 0; i < _2Type.enemyNameElems.length; i++) {
             _2Type.enemyNameElems[i].innerHTML = _2Type.enemyName;
         }
@@ -261,12 +261,25 @@ window._2Type = {
     },
 
     displayEnemyStats: function(stats) {
-        console.log(stats);
         _2Type.enemyAcc.innerHTML = stats.acc;
         _2Type.enemyMistakes.innerHTML = stats.mistakes;
         _2Type.enemyTime.innerHTML = stats.time;
         _2Type.enemyStatsPending.classList.add('hidden');
         _2Type.enemyStats.classList.remove('hidden');
+    },
+
+    showOpponentAnswer: function(status) {
+        if (status) {
+            _2Type.enemyBox.classList.add('pgood');
+            setTimeout(function(){
+                _2Type.enemyBox.classList.remove('pgood');
+            }, 20);
+        } else {
+            _2Type.enemyBox.classList.add('bad');
+            setTimeout(function(){
+                _2Type.enemyBox.classList.remove('bad');
+            }, 20);
+        }
     }
 }
 
