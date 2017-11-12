@@ -43,7 +43,12 @@ io.on('connection', function(socket) {
 		room = token;
 		socket.join(room);
 		socket.emit('token', room);
+		socket.broadcast.to(room).emit('opponentping', name);
 		console.log(`${name} joined room: ${room}`);
+	});
+
+	socket.on('opponentpong', function(name) {
+		socket.broadcast.to(room).emit('opponentpong', name);
 	});
 
 	socket.on('start', function() {
@@ -53,6 +58,12 @@ io.on('connection', function(socket) {
 		request(sentences, function(error, response) {
 			text = response;
 		});
+	});
+
+	socket.on('setname', function(username) {
+		let isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));
+		if (isUserNameValid(username))
+			name = username;
 	});
 });
 
