@@ -98,6 +98,7 @@ client.onOpponentAnswer(function(hasMistake) {
 
 client.onOpponentFinish(function(stats) {
     console.log('opponent finished: ' + stats);
+    _2Type.displayEnemyStats(stats);
 });
 
 window.setName = function(name) {
@@ -139,6 +140,11 @@ window._2Type = {
         _2Type.playerTimeElem = document.querySelector('#player_time');
         _2Type.enemyNameElems = document.querySelectorAll('.enemy_name');
         _2Type.enemyCompleteElems = document.querySelectorAll('.enemy_complete');
+        _2Type.enemyAcc = document.querySelector('#enemy_acc');
+        _2Type.enemyMistakes = document.querySelector('#enemy_mistakes');
+        _2Type.enemyTime = document.querySelector('#enemy_time');
+        _2Type.enemyStats = document.querySelector('#enemy-stats');
+        _2Type.enemyStatsPending = document.querySelector('#enemy-stats-pending');
         _2Type.winnerNameElem = document.querySelector('.winner_name');
         _2Type.noPlayerElem = document.querySelector('#no-player');
         _2Type.copyInviteLink = document.querySelector('#copy-invite-link');
@@ -285,13 +291,11 @@ window._2Type = {
         _2Type.playerTimeElem.innerHTML = finalTime+'s';
         _2Type.endScreenElem.classList.remove('hidden');
 
-        // lilah strings
-        console.log(
-            finalTime+'s',
-            _2Type.playerAccElems[0].innerHTML,
-            _2Type.playerMistakeElems[0].innerHTML
-        );
-
+        client.submitCompletion({
+            acc: _2Type.playerAccElems[0].innerHTML,
+            mistakes: _2Type.playerMistakeElems[0].innerHTML,
+            time: finalTime+'s'
+        });
     },
 
     updatePlayerStats: function() {
@@ -326,6 +330,15 @@ window._2Type = {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
+    },
+
+    displayEnemyStats: function(stats) {
+        console.log(stats);
+        _2Type.enemyAcc.innerHTML = stats.acc;
+        _2Type.enemyMistakes.innerHTML = stats.mistakes;
+        _2Type.enemyTime.innerHTML = stats.time;
+        _2Type.enemyStatsPending.classList.add('hidden');
+        _2Type.enemyStats.classList.remove('hidden');
     }
 }
 
