@@ -4,7 +4,30 @@ const GameTokenLength = 7;
 class GameClient {
 
   constructor() {
+    this._onGetTokenCallback = () => {};
+    this._onClientDisconnectCallback = () => {};
+
+    this.token = null;
+    this.name = 'anonymous'; 
     this.socket = io();
+
+    this.socket.on('token', function(token) {
+      this._onGetTokenCallback.call(null, token);
+    }.bind(this));
+
+    this.socket.on('disconnected', function(args) {
+      this._onClientDisconnectCallback.call(null, args);
+    }.bind(this));
+  }
+
+  onGetToken(callback) {
+    if (typeof callback === 'function')
+      this._onGetTokenCallback = callback;
+  }
+
+  onClientDisconnect(callback) {
+    if (typeof callback === 'function')
+      this._onClientDisconnectCallback = callback;
   }
 
 }

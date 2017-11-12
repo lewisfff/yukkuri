@@ -70,6 +70,15 @@
 
 const multiplayer = __webpack_require__(1);
 const client = new multiplayer.GameClient();
+
+client.onGetToken(function(token) {
+    console.log(`received token ${token}`);
+});
+
+client.onClientDisconnect(function(args) {
+    console.log(`disconnect event: ${args}`);
+});
+
 // multiplayer.isUserNameValid('cat') => true
 // let token = multiplayer.FindToken(); if (token !== null) ...
 
@@ -206,7 +215,30 @@ const GameTokenLength = 7;
 class GameClient {
 
   constructor() {
+    this._onGetTokenCallback = () => {};
+    this._onClientDisconnectCallback = () => {};
+
+    this.token = null;
+    this.name = 'anonymous'; 
     this.socket = io();
+
+    this.socket.on('token', function(token) {
+      this._onGetTokenCallback.call(null, token);
+    }.bind(this));
+
+    this.socket.on('disconnected', function(args) {
+      this._onClientDisconnectCallback.call(null, args);
+    }.bind(this));
+  }
+
+  onGetToken(callback) {
+    if (typeof callback === 'function')
+      this._onGetTokenCallback = callback;
+  }
+
+  onClientDisconnect(callback) {
+    if (typeof callback === 'function')
+      this._onClientDisconnectCallback = callback;
   }
 
 }
