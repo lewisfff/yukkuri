@@ -1,6 +1,8 @@
 
 const multiplayer = require('./multiplayer.js');
 const client = new multiplayer.GameClient();
+// multiplayer.isUserNameValid('cat') => true
+// let token = multiplayer.FindToken(); if (token !== null) ...
 
 window._2Type = {
     init: function() {
