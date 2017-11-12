@@ -65,31 +65,34 @@
             </div>
             <div class="stats-box" id="complete-enemy-stats">
                 <h2 class="enemy-name"><div class="enemy_name">[PLAYER]</div></h2>
-                <div class="sub-panel">
-                    <label>Time:</label>
-                    <span class="complete-time">0.00 seconds</span>
+                <div id="enemy-stats" class="hidden">
+                    <div class="sub-panel">
+                        <label>Time:</label>
+                        <span class="complete-time">0.00 seconds</span>
+                    </div>
+                    <div class="sub-panel">
+                        <label>Mistakes:</label>
+                        <span class="complete-time">0</span>
+                    </div>
+    <!--                 <div class="sub-panel">
+                        <label>Best Combo:</label>
+                        <span class="complete-time">0</span>
+                    </div> -->
+                    <div class="sub-panel">
+                        <label>Accuracy:</label>
+                        <span class="complete-time">0%</span>
+                    </div>
+    <!--                 <div class="sub-panel rank">
+                        <label>Rank:</label>
+                        <span class="complete-time">F</span>
+                    </div> -->
                 </div>
-                <div class="sub-panel">
-                    <label>Mistakes:</label>
-                    <span class="complete-time">0</span>
-                </div>
-<!--                 <div class="sub-panel">
-                    <label>Best Combo:</label>
-                    <span class="complete-time">0</span>
-                </div> -->
-                <div class="sub-panel">
-                    <label>Accuracy:</label>
-                    <span class="complete-time">0%</span>
-                </div>
-<!--                 <div class="sub-panel rank">
-                    <label>Rank:</label>
-                    <span class="complete-time">F</span>
-                </div> -->
+                <div id="enemy-stats-pending">Enemy is still playing or is not connected yet...</div>
             </div>
             <div id="complete-winner">
                 <div class="winner_name">[PLAYER]</div> WINS!
             </div>
-            <button type="button">Rematch?</button>
+            <!-- <button type="button">Rematch?</button> -->
         </div>
         <div id="new-player" class="hidden">
             Player <div class="player_name">[PLAYER]</div> has entered the battle!!
