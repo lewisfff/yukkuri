@@ -12,9 +12,9 @@
         <div id="stage">
             <div id="active-zone" class="ui-row"></div>
             <div id="player-zone" class="ui-row">
-                <div class="player_name">Player</div>
-                <div class="player_acc">9999.99</div>
-                <div id="player_complete">24/100</div>
+                <div class="player_name">[NAME]</div>
+                <div class="player_acc">-</div>
+                <div class="player_complete">-</div>
             </div>
             <div id="stack">
                 <span>Error</span>
@@ -27,15 +27,15 @@
         </div>
         <div id="lobby">
             <div class="player">
-                <div class="player-row enemy_name">Player 2</div>
-                <div class="player-row enemy_complete">60/100</div>
+                <div class="player-row enemy_name">[PLAYER]</div>
+                <div class="player-row enemy_complete">-</div>
                 <div class="icon"></div>
             </div>
             <div id="no-player">
-                <a href="#0" id="copy-invite-link"
-                 data-clipboard-text="LINKGOHERE">
+                <div id="copy-invite-link"
+                 data-clipboard-text="">
                     Invite Player <span>Click to copy link</span>
-                </a>
+                </div>
             </div>
         </div>
         <div id="complete-modal" class="hidden">
@@ -44,11 +44,11 @@
                 <h2 class="player-name"><div class="player_name">[PLAYER]</div></h2>
                 <div class="sub-panel">
                     <label>Time:</label>
-                    <span id="player_time">0.00 seconds</span>
+                    <span id="player_time">[TIME]</span>
                 </div>
                 <div class="sub-panel">
                     <label>Mistakes:</label>
-                    <span class="player_mistakes">0</span>
+                    <span class="player_mistakes">[MISTAKES]</span>
                 </div>
 <!--                 <div class="sub-panel">
                     <label>Best Combo:</label>
@@ -56,7 +56,7 @@
                 </div> -->
                 <div class="sub-panel">
                     <label>Accuracy:</label>
-                    <span class="player_acc">0%</span>
+                    <span class="player_acc">[ACC]</span>
                 </div>
 <!--                 <div class="sub-panel rank">
                     <label>Rank:</label>
@@ -68,11 +68,11 @@
                 <div id="enemy-stats" class="hidden">
                     <div class="sub-panel">
                         <label>Time:</label>
-                        <span class="complete-time">0.00 seconds</span>
+                        <span class="complete-time">[TIME]</span>
                     </div>
                     <div class="sub-panel">
                         <label>Mistakes:</label>
-                        <span class="complete-time">0</span>
+                        <span class="complete-time">[MISTAKES]</span>
                     </div>
     <!--                 <div class="sub-panel">
                         <label>Best Combo:</label>
@@ -80,7 +80,7 @@
                     </div> -->
                     <div class="sub-panel">
                         <label>Accuracy:</label>
-                        <span class="complete-time">0%</span>
+                        <span class="complete-time">[ACC]</span>
                     </div>
     <!--                 <div class="sub-panel rank">
                         <label>Rank:</label>

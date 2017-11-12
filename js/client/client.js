@@ -3,6 +3,7 @@ const multiplayer = require('./multiplayer.js');
 const client = new multiplayer.GameClient();
 
 client.onGetToken(function(token) {
+    window.gameToken = token;
     console.log(`received token ${token}`);
 });
 
@@ -30,9 +31,6 @@ window.startGame = function(wordCount) {
     client.startGame();
 }
 
-// multiplayer.isUserNameValid('cat') => true
-// let token = multiplayer.FindToken(); if (token !== null) ...
-
 window._2Type = {
     init: function() {
         // define html elements
@@ -52,6 +50,8 @@ window._2Type = {
         _2Type.enemyNameElems = document.querySelectorAll('.enemy_name');
         _2Type.enemyCompleteElems = document.querySelectorAll('.enemy_complete');
         _2Type.winnerNameElem = document.querySelector('.winner_name');
+        _2Type.noPlayerElem = document.querySelector('#no-player');
+        _2Type.copyInviteLink = document.querySelector('#copy-invite-link');
 
         // store default vars
         _2Type.playerName = "Player";
@@ -75,8 +75,6 @@ window._2Type = {
             'game','will','start!'
         ];
         _2Type.gameStringsLength = null;
-
-        new Clipboard('#copy-invite-link');
 
         // run startup functions
         _2Type.nameEntry();
@@ -144,6 +142,26 @@ window._2Type = {
     initGame: function() {
         _2Type.menuOverlay.classList.add('hidden');
         _2Type.endScreenElem.classList.add('hidden');
+
+        // if (!multiplayer.isUserNameValid(_2Type.playerName))
+        //     debugger;
+
+        if (multiplayer.FindGameToken()) {
+            let token = multiplayer.FindGameToken();
+            window.gameToken = token;
+            _2Type.noPlayerElem.classList.add('hidden');
+        } else {
+            let token = window.gameToken;
+            if (token !== null) {
+                let gameURI = location.protocol + '//' + location.hostname
+                    + (location.port ? ':' + location.port : '') + '/#' + token;
+                _2Type.copyInviteLink.setAttribute('data-clipboard-text', gameURI);
+
+                new Clipboard('#copy-invite-link');
+            }
+        }
+
+        //TODO: how to find out when enemy connects?
         _2Type.startGame();
     },
 
