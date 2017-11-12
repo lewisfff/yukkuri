@@ -85,7 +85,11 @@ window._2Type = {
         // store default vars
         _2Type.playerName = "Player";
         // number of note steps achieved
-        _2Type.playerCurrentStep = null;
+        _2Type.playerAccumulativeStep = null;
+        // current desired character for current step
+        _2Type.playerCurrentStepChar = null;
+        // charAt for the current desired step char
+        _2Type.playerCurrentStepCharIteration = null;
         // number of keys pressed total
         _2Type.playerTotalStep = null;
         // timestamp for when game timer started
@@ -108,8 +112,26 @@ window._2Type = {
     },
 
     keyCharPress: function(char) {
-        if (_2Type.getCurrentStep().innerText == char) {
-            _2Type.getCurrentStep().remove();
+        // todo: clean up this function does way too much
+        if (_2Type.playerCurrentStepChar == char) {
+            _2Type.playerCurrentStepCharIteration++;
+            let nextChar = _2Type.gameStringsArray[0]
+                                .charAt(_2Type.playerCurrentStepCharIteration);
+            if (nextChar !== "") {
+                // iterate to next character
+                _2Type.playerCurrentStepChar = nextChar;
+            } else {
+                // if there is no next character, iterate to next word
+                _2Type.getCurrentStep().remove();
+                _2Type.playerCurrentStepCharIteration = 0;
+                _2Type.gameStringsArray.shift();
+
+                if (_2Type.gameStringsArray.length) {
+                    _2Type.playerCurrentStepChar = _2Type.gameStringsArray[0].charAt(0);
+                } else {
+                    alert('You beat the game?');
+                }
+            }
         }
     },
 
@@ -119,22 +141,18 @@ window._2Type = {
 
     mainMenu: function() {
         _2Type.nameEntry();
-        console.log('main menu, player '+_2Type.playerName);
         document.querySelector('#menu1').classList.add('hidden');
         document.querySelector('#menu2').classList.remove('hidden');
     },
 
     // show game window
     initGame: function() {
-        console.log('game starting, player '+_2Type.playerName);
         document.querySelector('#main-menu').classList.add('hidden');
-
         _2Type.startGame();
     },
 
     startGame: function() {
-        console.log('starting the game');
-
+        _2Type.stack.innerHTML = '';
         // TODO LILAH: pass networked string in when starting 2P mode
         // getNetworkedString();
 
@@ -146,6 +164,8 @@ window._2Type = {
             span.appendChild(text);
             _2Type.stack.appendChild(span);
         }
+
+        _2Type.playerCurrentStepChar = _2Type.gameStringsArray[0].charAt(0);
     }
 }
 
