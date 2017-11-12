@@ -6,6 +6,7 @@ class GameClient {
   constructor() {
     this._onGetTokenCallback = () => {};
     this._onClientDisconnectCallback = () => {};
+    this._onStartGame = () => {};
 
     this.token = null;
     this.name = 'anonymous'; 
@@ -18,6 +19,15 @@ class GameClient {
     this.socket.on('disconnected', function(args) {
       this._onClientDisconnectCallback.call(null, args);
     }.bind(this));
+
+    this.socket.on('start', function(words) {
+      this._onStartGame.call(null, words);
+    }.bind(this));
+  }
+
+  onStartGame(callback) {
+    if (typeof callback === 'function')
+      this._onStartGame = callback;
   }
 
   onGetToken(callback) {
@@ -33,6 +43,10 @@ class GameClient {
   joinGame(token) {
     this.token = token;
     this.socket.emit('join', token);
+  }
+
+  startGame() {
+    this.socket.emit('start');
   }
 
 }

@@ -79,8 +79,16 @@ client.onClientDisconnect(function(args) {
     console.log(`disconnect event: ${args}`);
 });
 
+client.onStartGame(function(words) {
+    console.log('words:', words);
+});
+
 window.joinGame = function(token) {
     client.joinGame(token);
+}
+
+window.startGame = function(wordCount) {
+    client.startGame();
 }
 
 // multiplayer.isUserNameValid('cat') => true
@@ -240,6 +248,7 @@ class GameClient {
   constructor() {
     this._onGetTokenCallback = () => {};
     this._onClientDisconnectCallback = () => {};
+    this._onStartGame = () => {};
 
     this.token = null;
     this.name = 'anonymous'; 
@@ -252,6 +261,16 @@ class GameClient {
     this.socket.on('disconnected', function(args) {
       this._onClientDisconnectCallback.call(null, args);
     }.bind(this));
+
+    this.socket.on('start', function(words) {
+      console.log('things happen');
+      this._onStartGame.call(null, words);
+    }.bind(this));
+  }
+
+  onStartGame(callback) {
+    if (typeof callback === 'function')
+      this._onStartGame = callback;
   }
 
   onGetToken(callback) {
@@ -267,6 +286,10 @@ class GameClient {
   joinGame(token) {
     this.token = token;
     this.socket.emit('join', token);
+  }
+
+  startGame() {
+    this.socket.emit('start');
   }
 
 }
