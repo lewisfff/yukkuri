@@ -79,6 +79,10 @@ client.onClientDisconnect(function(args) {
     console.log(`disconnect event: ${args}`);
 });
 
+window.joinGame = function(token) {
+    client.joinGame(token);
+}
+
 // multiplayer.isUserNameValid('cat') => true
 // let token = multiplayer.FindToken(); if (token !== null) ...
 
@@ -239,6 +243,11 @@ class GameClient {
   onClientDisconnect(callback) {
     if (typeof callback === 'function')
       this._onClientDisconnectCallback = callback;
+  }
+
+  joinGame(token) {
+    this.token = token;
+    this.socket.emit('join', token);
   }
 
 }
