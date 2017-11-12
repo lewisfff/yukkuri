@@ -7,7 +7,7 @@ const request = require('request');
 
 const token = require('./token.js');
 
-const sentences = 'http://metaphorpsum.com/sentences/10'
+const sentences = 'http://metaphorpsum.com/sentences/8'
 const pub = '../../public';
 const root = `${__dirname}/${pub}`;
 const port = process.env.PORT || 3000;
@@ -24,7 +24,6 @@ let initialGameText = null;
 io.on('connection', function(socket) {
 	let room = token.generateUnique(io);
 	let name = 'anonymous';
-	let text = initialGameText;
 	let completions = 0;
 	socket.join(room);
 	socket.emit('token', room);
@@ -50,9 +49,9 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('start', function() {
-		socket.broadcast.to(room).emit('start', text);
+		socket.broadcast.to(room).emit('start', initialGameText);
 		request(sentences, function(error, response) {
-			text = response;
+			if(!error) initialGameText = response.body;
 		});
 	});
 
@@ -91,4 +90,5 @@ io.on('connection', function(socket) {
 request(sentences, function(error, response) {
 	if (!error) initialGameText = response.body;
 	server.listen(port);
+	console.log(`Serving ${root} on port ${port}`);
 });
