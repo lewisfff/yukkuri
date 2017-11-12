@@ -82,11 +82,20 @@ main
         top: 0
         right: 0
         font-size: 1rem
-        padding: 1rem 2rem
+        padding: .5rem 1rem
         position: absolute
         right: 2vmin
         top: 2vmin
-        border: .5vmin solid $light
+        transition: .1s ease-out
+        &.good
+            background-color: $green
+            transition: 0s linear
+        &.pgood
+            box-shadow: 0 0 0 1vmin $vibrant inset
+            transition: 0s linear
+        &.bad
+            box-shadow: 0 0 0 2vmin $pink inset
+            transition: 0s linear
         .player-row
             line-height: 4vmin
             height: 4vmin
