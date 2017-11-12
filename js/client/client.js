@@ -23,6 +23,14 @@ client.onGetOpponent(function(name) {
     _2Type.getOpponent();
 });
 
+client.onOpponentAnswer(function(hasMistake) {
+    console.log('opponent answered: ', hasMistake);
+});
+
+client.onOpponentFinish(function(stats) {
+    console.log('opponent finished: ' + stats);
+});
+
 window.setName = function(name) {
     client.setUserName(name);
 }
@@ -34,6 +42,14 @@ window.joinGame = function(token) {
 window.startGame = function(wordCount) {
     console.log('trying to start game');
     client.startGame();
+}
+
+window.answer = function(hasMistake) {
+    client.submitAnswer(hasMistake);
+}
+
+window.finish = function(stats) {
+    client.submitCompletion(stats);
 }
 
 window._2Type = {

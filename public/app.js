@@ -92,6 +92,14 @@ client.onGetOpponent(function(name) {
     _2Type.getOpponent();
 });
 
+client.onOpponentAnswer(function(hasMistake) {
+    console.log('opponent answered: ', hasMistake);
+});
+
+client.onOpponentFinish(function(stats) {
+    console.log('opponent finished: ' + stats);
+});
+
 window.setName = function(name) {
     client.setUserName(name);
 }
@@ -105,6 +113,20 @@ window.startGame = function(wordCount) {
     client.startGame();
 }
 
+<<<<<<< HEAD
+=======
+window.answer = function(hasMistake) {
+    client.submitAnswer(hasMistake);
+}
+
+window.finish = function(stats) {
+    client.submitCompletion(stats);
+}
+
+// multiplayer.isUserNameValid('cat') => true
+// let token = multiplayer.FindToken(); if (token !== null) ...
+
+>>>>>>> add remaining socket event logic
 window._2Type = {
     init: function() {
         // define html elements
@@ -332,6 +354,8 @@ class GameClient {
     this._onClientDisconnectCallback = () => {};
     this._onStartGame = () => {};
     this._onGetOpponent = () => {};
+    this._onOpponentAnswer = () => {};
+    this._onOpponentFinish = () => {};
 
     this.token = null;
     this.name = 'anonymous';
@@ -356,7 +380,16 @@ class GameClient {
 
     this.socket.on('opponentpong', function(name) {
       this._onOpponentPong(name);
-    }.bind(this))
+    }.bind(this));
+
+    this.socket.on('answer', function(hasMistake) {
+      console.log('DDDDD');
+      this._onOpponentAnswer.call(null, hasMistake)
+    }.bind(this));
+
+    this.socket.on('finish', function(stats) {
+      this._onOpponentFinish.call(null, stats);
+    }.bind(this));
   }
 
   _onOpponentPing(name) {
@@ -373,6 +406,16 @@ class GameClient {
   onStartGame(callback) {
     if (typeof callback === 'function')
       this._onStartGame = callback;
+  }
+
+  onOpponentAnswer(callback) {
+    if (typeof callback === 'function')
+      this._onOpponentAnswer = callback;
+  }
+
+  onOpponentFinish(callback) {
+    if (typeof callback === 'function')
+      this._onOpponentFinish = callback;
   }
 
   onGetToken(callback) {
@@ -403,6 +446,18 @@ class GameClient {
   startGame() {
     this.socket.emit('start');
   }
+<<<<<<< HEAD
+=======
+
+  submitAnswer(hasMistake) {
+    this.socket.emit('answer', hasMistake);
+  }
+
+  submitCompletion(stats) {
+    this.socket.emit('finish', stats);
+  }
+
+>>>>>>> add remaining socket event logic
 }
 
 const isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));
