@@ -89,7 +89,7 @@ const isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));
 const FindGameToken = () => {
   let token = location.hash;
   if (token.length == GameTokenLength)
-    return token;
+    return token.substring(1);
   return null;
 };
 

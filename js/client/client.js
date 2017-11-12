@@ -17,6 +17,8 @@ client.onStartGame(function(words) {
 
 client.onGetOpponent(function(name) {
     console.log('opponent:', name);
+    _2Type.enemyName = name;
+    _2Type.getOpponent();
 });
 
 window.setName = function(name) {
@@ -77,7 +79,6 @@ window._2Type = {
         _2Type.gameStringsLength = null;
 
         // run startup functions
-        _2Type.nameEntry();
         _2Type.nextButton.addEventListener('click', e => _2Type.mainMenu());
         _2Type.startButton.addEventListener('click', e => _2Type.initGame());
     },
@@ -130,6 +131,7 @@ window._2Type = {
 
     nameEntry: function() {
         _2Type.playerName = _2Type.nameInput.value;
+        client.setUserName(_2Type.playerName);
     },
 
     mainMenu: function() {
@@ -150,6 +152,7 @@ window._2Type = {
             let token = multiplayer.FindGameToken();
             window.gameToken = token;
             _2Type.noPlayerElem.classList.add('hidden');
+            client.joinGame(token);
         } else {
             let token = window.gameToken;
             if (token !== null) {
@@ -219,6 +222,14 @@ window._2Type = {
         }
         if (_2Type.playerStartTime === null) {
             _2Type.playerStartTime = Date.now();
+        }
+    },
+
+    getOpponent: function() {
+        _2Type.noPlayerElem.classList.add('hidden');
+        _2Type.enemyNameElems
+        for (var i = 0; i < _2Type.enemyNameElems.length; i++) {
+            _2Type.enemyNameElems[i].innerHTML = _2Type.enemyName;
         }
     }
 }

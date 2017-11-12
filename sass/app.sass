@@ -201,6 +201,15 @@ main
         text-align: center
         margin: 1rem
         cursor: pointer
+        &:focus:after
+            content: "Link Copied!"
+            position: absolute
+            color: $light
+            background: $green
+            transform: rotate(8deg)
+            padding: .5rem 1rem
+            top: 1.5rem
+            left: 1.5rem
         &:hover
             background: $pink
         span

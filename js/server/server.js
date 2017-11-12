@@ -16,7 +16,7 @@ const app = new koa();
 app.use(serve(root));
 
 const server = http.createServer(app.callback());
-const io = socket(server); 
+const io = socket(server);
 
 let initialGameText = null;
 
