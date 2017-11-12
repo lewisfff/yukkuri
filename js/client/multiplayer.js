@@ -30,6 +30,11 @@ class GameClient {
       this._onClientDisconnectCallback = callback;
   }
 
+  joinGame(token) {
+    this.token = token;
+    this.socket.emit('join', token);
+  }
+
 }
 
 const isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));

@@ -27,6 +27,19 @@ io.on('connection', function(socket) {
 		console.log(`${name} disconnected from ${room}`);
 		//socket.broadcast.to(room).emit('disconnect', socket.id)
 	});
+
+	socket.on('join', function(token) {
+		if (!io.sockets.adapter.rooms.hasOwnProperty(token))
+			return;
+		let room = io.sockets.adapter.rooms[token];
+		if (room.length !== 1)
+			return;
+		socket.leave(room);
+		room = token;
+		socket.join(room);
+		socket.emit('token', room);
+		console.log(`${name} joined room: ${room}`);
+	});
 });
 
 server.listen(port);

@@ -10,6 +10,10 @@ client.onClientDisconnect(function(args) {
     console.log(`disconnect event: ${args}`);
 });
 
+window.joinGame = function(token) {
+    client.joinGame(token);
+}
+
 // multiplayer.isUserNameValid('cat') => true
 // let token = multiplayer.FindToken(); if (token !== null) ...
 
