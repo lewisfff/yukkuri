@@ -1,6 +1,15 @@
 
 const multiplayer = require('./multiplayer.js');
 const client = new multiplayer.GameClient();
+
+client.onGetToken(function(token) {
+    console.log(`received token ${token}`);
+});
+
+client.onClientDisconnect(function(args) {
+    console.log(`disconnect event: ${args}`);
+});
+
 // multiplayer.isUserNameValid('cat') => true
 // let token = multiplayer.FindToken(); if (token !== null) ...
 

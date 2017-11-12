@@ -20,6 +20,7 @@ io.on('connection', function(socket) {
 	let room = token.generateUnique(io);
 	let name = 'anonymous';
 	socket.join(room);
+	socket.emit('token', room);
 	console.log(`${name} connected to ${room}`);
 
 	socket.on('disconnect', function() {
