@@ -48,6 +48,16 @@ main
     #active-zone
         background: $subtle
         bottom: 20%
+        transition: .1s ease-out
+        &.good
+            background-color: $green
+            transition: 0s linear
+        &.pgood
+            box-shadow: 0 0 0 1vmin $vibrant inset
+            transition: 0s linear
+        &.bad
+            box-shadow: 0 0 0 2vmin $pink inset
+            transition: 0s linear
     #player-zone
         bottom: 0%
         font-size: 1rem
@@ -193,4 +203,3 @@ main
         span
             display: block
             font-size: 0.8rem
-

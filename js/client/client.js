@@ -9,6 +9,7 @@ window._2Type = {
         // define html elements
         _2Type.nextButton = document.querySelector('#next-button');
         _2Type.startButton = document.querySelector('#start');
+        _2Type.activeZone = document.querySelector('#active-zone');
         _2Type.stack = document.querySelector('#stack');
         _2Type.nameInput = document.querySelector('[name=player_name]');
         _2Type.menuOverlay = document.querySelector('#main-menu');
@@ -51,11 +52,21 @@ window._2Type = {
             if (nextChar !== "") {
                 // iterate to next character
                 _2Type.playerCurrentStepChar = nextChar;
+
+                _2Type.activeZone.classList.add('pgood');
+                setTimeout(function(){
+                    _2Type.activeZone.classList.remove('pgood');
+                }, 20);
             } else {
                 // if there is no next character, iterate to next word
                 _2Type.getCurrentStep().remove();
                 _2Type.playerCurrentStepCharIteration = 0;
                 _2Type.gameStringsArray.shift();
+
+                _2Type.activeZone.classList.add('good');
+                setTimeout(function(){
+                    _2Type.activeZone.classList.remove('good');
+                }, 60);
 
                 if (_2Type.gameStringsArray.length) {
                     _2Type.playerCurrentStepChar = _2Type.gameStringsArray[0].charAt(0);
@@ -63,6 +74,11 @@ window._2Type = {
                     alert('You beat the game?');
                 }
             }
+        } else {
+            _2Type.activeZone.classList.add('bad');
+            setTimeout(function(){
+                _2Type.activeZone.classList.remove('bad');
+            }, 60);
         }
     },
 
