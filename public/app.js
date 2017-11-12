@@ -70,6 +70,8 @@
 
 const multiplayer = __webpack_require__(1);
 const client = new multiplayer.GameClient();
+// multiplayer.isUserNameValid('cat') => true
+// let token = multiplayer.FindToken(); if (token !== null) ...
 
 window._2Type = {
     init: function() {
@@ -157,6 +159,8 @@ _2Type.init();
 /***/ (function(module, exports) {
 
 
+const GameTokenLength = 7;
+
 class GameClient {
 
   constructor() {
@@ -165,7 +169,18 @@ class GameClient {
 
 }
 
+const isUserNameValid = (name) => !(/[^a-zA-Z0-9]/.test(name));
+
+const FindGameToken = () => {
+  let token = location.hash;
+  if (token.length == GameTokenLength)
+    return token;
+  return null;
+};
+
 exports.GameClient = GameClient;
+exports.isUserNameValid = isUserNameValid;
+exports.FindGameToken = FindGameToken;
 
 
 /***/ })
